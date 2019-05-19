@@ -1,0 +1,23 @@
+{
+	"KSR030|block": "KSR030",
+	"KSR030.MotorNum.M1A|block": "右邊",
+	"KSR030.MotorNum.M1B|block": "左邊",
+	"KSR030.LedNum.L_LED|block": "左邊",
+	"KSR030.LedNum.R_LED|block": "右邊",
+	"KSR030.Track.Left|block": "左邊",
+	"KSR030.Track.Right|block": "右邊",
+	"KSR030.RunState.Forward|block": "前進",
+	"KSR030.RunState.Back|block": "後退",
+	"KSR030.RunState.Left|block": "左邊",
+	"KSR030.RunState.Right|block": "右邊",
+	"KSR030.RunState.Stop|block": "停止",
+	"KSR030.Ultrasonic|block": "超音波測距(公分)",
+	"KSR030.Read_Track|block": "循跡感測器 %sensor",
+	"KSR030.RGB_LED|block": "全彩燈",
+	"KSR030.Servo|block": "舵機 %channel|角度 %degree",
+	"KSR030.ServoRange|block": "舵機 %channel|角度 %degree|servomin %servomin|servomax %servomax",
+	"KSR030.Motor|block": "馬達 %channel|速度 %speed",
+	"KSR030.Servo_Car|block": "舵機車種 %index|左邊速度 %lspeed|右邊速度 %rspeed",
+	"KSR030.Motor_Car|block": "馬達車種 %index|左邊速度 %lspeed|右邊速度 %rspeed"
+	
+}

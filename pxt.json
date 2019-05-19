@@ -1,0 +1,20 @@
+{
+    "name": "KSR030",
+    "version": "0.4.0",
+    "description": "Extension for KAISE KSRobot KSR030 Robot",
+    "license": "MIT", 
+    "dependencies": {
+        "core": "*",
+        "neopixel": "github:microsoft/pxt-neopixel"
+    },
+    "files": [
+        "main.ts",
+        "README.md",
+        "_locales/zh/KSR030-strings.json" 
+        
+    ],
+    "testFiles": [
+      "tests.ts"
+    ],
+    "public": true
+}
