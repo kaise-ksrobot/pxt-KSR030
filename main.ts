@@ -159,6 +159,9 @@ namespace KSR030 {
     //% block="Track Sensor %sensor"
     //% weight=97
     export function Read_Track(sensor:Track):number{
+        if(!initialized){
+			init()
+		}
         if(sensor==Track.Left){
             return pins.digitalReadPin(DigitalPin.P8)
         }else if(sensor==Track.Right){
@@ -262,6 +265,9 @@ namespace KSR030 {
     export function Servo_Car(index: RunState, lspeed: number, rspeed: number): void {
         let l_pulselen=0;
         let r_pulselen=0;
+        if(!initialized){
+			init()
+		}
         
         switch (index) {
             case RunState.Forward: 
