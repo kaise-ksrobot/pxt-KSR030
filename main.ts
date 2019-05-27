@@ -163,9 +163,9 @@ namespace KSR030 {
 			init()
 		}
         if(sensor==Track.Left){
-            return pins.digitalReadPin(DigitalPin.P8)
-        }else if(sensor==Track.Right){
             return pins.digitalReadPin(DigitalPin.P12)
+        }else if(sensor==Track.Right){
+            return pins.digitalReadPin(DigitalPin.P8)
         }else{
             return -1
         } 
