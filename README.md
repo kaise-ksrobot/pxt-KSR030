@@ -1,8 +1,10 @@
 # KSR030 Robot Kit
-KAISE KSRobot KSR030 micro:bit Robot Kit
-KSR030 仿生自走獸
+KAISE KSRobot KSR030 micro:bit Robot Kit\
+KSR030 仿生自走獸\
+[http://ksr030.kaise.com.tw](http://ksr030.kaise.com.tw)
 
 ## User Guide 
+![image](images/ksr030.png)
 
 ## Code Example 
 
