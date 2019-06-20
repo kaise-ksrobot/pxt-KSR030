@@ -92,6 +92,7 @@ namespace KSR030 {
     }
 
     function setFreq(freq: number): void {
+        freq=freq*0.95;
         let prescaleval = 25000000/4096/freq;
         prescaleval -= 1;
         let prescale = prescaleval; 
