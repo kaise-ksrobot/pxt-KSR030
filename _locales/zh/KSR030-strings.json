@@ -11,6 +11,8 @@
 	"KSR030.RunState.Left|block": "左邊",
 	"KSR030.RunState.Right|block": "右邊",
 	"KSR030.RunState.Stop|block": "停止",
+	"KSR030.Frq_Set|block": "舵機頻率 設定 %frqval",
+	"KSR030.DETECT_Frequency|block": "偵測舵機 %channel 頻率到IO %iopin",
 	"KSR030.Ultrasonic|block": "超音波測距(公分)",
 	"KSR030.Read_Track|block": "循跡感測器 %sensor",
 	"KSR030.RGB_LED|block": "全彩燈",

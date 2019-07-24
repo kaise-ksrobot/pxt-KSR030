@@ -49,15 +49,30 @@ namespace KSR030 {
 
     export enum RunState {
         //% blockId="Go_Forward" block="Forward"
-        Forward = 1,
+        Forward = 0,
         //% blockId="Car_Back" block="Back"
-        Back = 2,
+        Back = 1,
         //% blockId="Go_Left" block="Left"
-        Left = 3,
+        Left = 2,
         //% blockId="GO_Right" block="Right"
-        Right = 4,
+        Right = 3,
         //% blockId="Go_Stop" block="Stop"
-        Stop = 5,
+        Stop = 4,
+     
+    }
+    export enum FrqState {
+        //% blockId="Frq_A" block="A"
+        A = 0,
+        //% blockId="Frq_B" block="B"
+        B = 1,
+        //% blockId="Frq_C" block="C"
+        C = 2,
+        //% blockId="Frq_D" block="D"
+        D = 3,
+        //% blockId="Frq_E" block="E"
+        E = 4,
+        //% blockId="Frq_F" block="F"
+        F = 5,
      
     }
 
@@ -92,7 +107,6 @@ namespace KSR030 {
     }
 
     function setFreq(freq: number): void {
-        freq=freq*0.95;
         let prescaleval = 25000000/4096/freq;
         prescaleval -= 1;
         let prescale = prescaleval; 
@@ -133,6 +147,47 @@ namespace KSR030 {
 			x= -4095;
 		}
         return x;
+    }
+
+    //% blockId=KSR030_Frq_Set
+    //% block="PWM Frequency Set %frqval"
+    //% weight=99
+    export function Frq_Set(frqval:FrqState):void{
+       
+        if(!initialized){
+			init()
+		}
+        if(frqval==FrqState.A){
+            i2c_write(MODE1, 0x00);
+            // Constrain the frequency
+            setFreq(50*0.92);
+
+        }else if(frqval==FrqState.B){
+            i2c_write(MODE1, 0x00);
+            // Constrain the frequency
+            setFreq(50*0.94);
+
+        }else if(frqval==FrqState.C){
+            i2c_write(MODE1, 0x00);
+            // Constrain the frequency
+            setFreq(50*0.96);
+            
+        }else if(frqval==FrqState.D){
+            i2c_write(MODE1, 0x00);
+            // Constrain the frequency
+            setFreq(50*0.98);
+            
+        }else if(frqval==FrqState.E){
+            i2c_write(MODE1, 0x00);
+            // Constrain the frequency
+            setFreq(50*1);
+            
+        }else if(frqval==FrqState.F){
+            i2c_write(MODE1, 0x00);
+            // Constrain the frequency
+            setFreq(50*1.02);
+            
+        }
     }
 
     //% blockId=KSR030_Ultrasonic 
@@ -214,8 +269,8 @@ namespace KSR030 {
      * Used to move the given servo to the specified degrees (0-180) connected to the KSR030
      * @param channel The number (1-16) of the servo to move
      * @param degrees The degrees (0-180) to move the servo to
-     * @param servomin 'minimum' pulse length count ; eg: 112
-     * @param servomax 'maximum' pulse length count ; eg: 491
+     * @param servomin 'minimum' pulse length count ; eg: 104
+     * @param servomax 'maximum' pulse length count ; eg: 510
      */
     //% blockId=KSR030_ServoRange
     //% block="Servo channel %channel|degrees %degree|servomin %servomin|servomax %servomax"
@@ -333,6 +388,65 @@ namespace KSR030 {
                 break;
             
         }
+    }
+
+    //% blockId=PWM_DETECT_Frequency
+    //% block="DETECT Servo %channel Frequency to pin %iopin"
+    //% weight=80
+    export function DETECT_Frequency(channel: ServoNum, iopin: DigitalPin): void  {
+        let frq = 0;
+        let frqPinState = 0;
+        let prevFrqPinState = 0;
+        let oneSecond = 1000;
+        let timer = 0;
+       
+        if(!initialized){
+			init()
+        }
+        setPwm(channel, 0, SERVOMAX);
+        for(let i=0; i<5000 ; i++) {
+            frqPinState = pins.digitalReadPin(iopin)
+            if (frqPinState == 0) {
+                prevFrqPinState = 0
+            }
+            if (frqPinState == 1 && prevFrqPinState == 0) {
+                prevFrqPinState = frqPinState
+                frq = frq + 1
+            }
+            control.waitMicros(1000)
+            timer = timer + 1
+            if (timer > oneSecond) {
+                frq = frq-2
+                if (frq > 53) {
+                    basic.showString("A")
+                } else {
+                    if (frq > 52) {
+                        basic.showString("B")
+                    } else {
+                        if (frq > 51) {
+                            basic.showString("C")
+                        } else {
+                            if (frq > 50) {
+                                basic.showString("D")
+                            } else {
+                                if (frq > 49) {
+                                    basic.showString("E")
+                                } else {
+                                    if (frq <= 49) {
+                                        basic.showString("F")
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                frq = 0
+                timer = 0
+            }
+        }
+        
+
     }
 
     
