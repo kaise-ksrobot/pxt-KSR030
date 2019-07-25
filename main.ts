@@ -432,9 +432,14 @@ namespace KSR030 {
                                 if (frq > 49) {
                                     basic.showString("E")
                                 } else {
-                                    if (frq <= 49) {
+                                    if (frq > 48) {
                                         basic.showString("F")
+                                    } else {
+                                        if((frq <= 48) {
+                                        basic.showString("X")
+                                        }
                                     }
+                                        
                                 }
                             }
                         }
@@ -448,12 +453,6 @@ namespace KSR030 {
         
 
     }
-
-    
-    
- 
-	
-	
 
 
 }
