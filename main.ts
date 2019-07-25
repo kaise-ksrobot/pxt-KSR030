@@ -393,18 +393,19 @@ namespace KSR030 {
     //% blockId=PWM_DETECT_Frequency
     //% block="DETECT Servo %channel Frequency to pin %iopin"
     //% weight=80
-    export function DETECT_Frequency(channel: ServoNum, iopin: DigitalPin): void  {
+    export function DETECT_Frequency(channel: ServoNum, iopin: DigitalPin): number  {
         let frq = 0;
         let frqPinState = 0;
         let prevFrqPinState = 0;
         let oneSecond = 1000;
         let timer = 0;
+        let ret_frq = 0;
        
         if(!initialized){
 			init()
         }
         setPwm(channel, 0, SERVOMAX);
-        for(let i=0; i<5000 ; i++) {
+        for(let i=0; i<2000 ; i++) {
             frqPinState = pins.digitalReadPin(iopin)
             if (frqPinState == 0) {
                 prevFrqPinState = 0
@@ -418,25 +419,33 @@ namespace KSR030 {
             if (timer > oneSecond) {
                 frq = frq-2
                 if (frq > 53) {
-                    basic.showString("A")
+                    //basic.showString("A")
+                    ret_frq= 65
                 } else {
                     if (frq > 52) {
-                        basic.showString("B")
+                        //basic.showString("B")
+                        ret_frq= 66
                     } else {
                         if (frq > 51) {
-                            basic.showString("C")
+                            //basic.showString("C")
+                            ret_frq= 67
                         } else {
                             if (frq > 50) {
-                                basic.showString("D")
+                                //basic.showString("D")
+                                ret_frq=  68
                             } else {
                                 if (frq > 49) {
-                                    basic.showString("E")
+                                    //basic.showString("E")
+                                    ret_frq=  69
                                 } else {
                                     if (frq > 48) {
-                                        basic.showString("F")
+                                        //basic.showString("F")
+                                        ret_frq=  70
                                     } else {
                                         if(frq <= 48) {
-                                            basic.showString("X")
+                                            //basic.showString("X")
+                                            ret_frq=  88
+
                                         }
                                     }
                                         
@@ -450,6 +459,7 @@ namespace KSR030 {
                 timer = 0
             }
         }
+        return ret_frq
         
 
     }
