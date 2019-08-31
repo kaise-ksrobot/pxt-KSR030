@@ -50,7 +50,7 @@ namespace KSR030 {
     export enum RunState {
         //% blockId="Go_Forward" block="Forward"
         Forward = 0,
-        //% blockId="Car_Back" block="Back"
+        //% blockId="Car_Back" block="Backward"
         Back = 1,
         //% blockId="Go_Left" block="Left"
         Left = 2,
