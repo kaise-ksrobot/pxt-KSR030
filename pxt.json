@@ -1,6 +1,6 @@
 {
     "name": "KSR030",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Extension for KAISE KSRobot KSR030 Robot",
     "license": "MIT",
     "dependencies": {
