@@ -9,6 +9,7 @@
     },
     "files": [
         "main.ts",
+        "ksrobot.cpp",
         "README.md",
         "_locales/zh/KSR030-strings.json"
     ],
