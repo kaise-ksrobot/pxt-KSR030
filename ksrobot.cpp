@@ -1,6 +1,9 @@
 #include "pxt.h"
+
 using namespace pxt;
-namespace KSRobotCPP
+
+//% weight=10 color=#00A6F0 icon="\uf085" 
+namespace kslib
 {
 
     //%
@@ -8,8 +11,9 @@ namespace KSRobotCPP
     {
 #if MICROBIT_CODAL
         return 0;
-#endif
+#else
         return 1;
+#endif
     }
-
-} // namespace KSRobotCPP
+    
+} // namespace kslib

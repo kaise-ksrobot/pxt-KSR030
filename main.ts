@@ -2,12 +2,6 @@
  * KSR030 V0.010
  */
 
-declare namespace KSRobotCPP {
-    //% shim=KSRobotCPP::mb_version
-    function mb_version(): int32;
-
-}
-
 
 
 //% weight=10 color=#00A6F0 icon="\uf085" block="KSR030"
@@ -92,6 +86,12 @@ namespace KSR030 {
     let initialized = false;
     let neoStrip: neopixel.Strip;
     let pwm_frq = 69;
+    let ks_version = 0;
+
+    //% shim=kslib::mb_version
+    function mb_version(): int32 {
+        return 0;
+    }
 
     function i2c_write(reg: number, value: number) {
 
@@ -114,11 +114,8 @@ namespace KSR030 {
 
 
         i2c_setFreq(50);
-
-        if (KSRobotCPP.mb_version())
-            pwm_frq = detect_freq(ServoNum.S0, DigitalPin.P2, 1)
-        else
-            pwm_frq = detect_freq(ServoNum.S0, DigitalPin.P2, 0)
+        ks_version = mb_version()
+        pwm_frq = detect_freq(ServoNum.S0, DigitalPin.P2, ks_version)
 
         servo_pwm(pwm_frq);
 
@@ -540,12 +537,7 @@ namespace KSR030 {
 
         i2c_setFreq(50);
 
-        if (KSRobotCPP.mb_version())
-            temp = detect_freq(channel, iopin, 1);
-        else
-            temp = detect_freq(channel, iopin, 0);
-
-
+        temp = detect_freq(channel, iopin, ks_version);
         servo_pwm(pwm_frq);
 
         return temp;
